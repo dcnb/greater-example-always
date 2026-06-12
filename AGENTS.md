@@ -1,6 +1,8 @@
 # CollectionBuilder-CSV — AI Agent Instructions
 
-You are working on a CollectionBuilder-CSV static site built with Jekyll. This framework is **data-driven**: nearly all UI configuration comes from CSV files and YAML, not from editing HTML/Liquid templates. Understanding and following this architecture is critical.
+CollectionBuilder-CSV is a Jekyll-based framework for building digital collection and exhibit websites from a spreadsheet of metadata plus a folder of objects. It follows a **minimal computing** philosophy: static output, few dependencies, and configuration over code. The framework is **data-driven** — nearly all UI configuration comes from CSV files and YAML, not from editing HTML/Liquid templates. Understanding and following this architecture is critical.
+
+> **Companion files in this repo:** `CLAUDE.md` imports this file so Claude Code and Claude Cowork get the same rules. `HUMANS.md` is the human-facing guide to working with AI on this project. Keep all architecture rules here in `AGENTS.md` — the other two point back to it.
 
 ## Customization Priority Order
 
@@ -50,6 +52,16 @@ You are working on a CollectionBuilder-CSV static site built with Jekyll. This f
 **Production-Only Features**
 - Analytics, Schema.org/OG meta tags, and `noindex` settings are wrapped in `{% if jekyll.environment == "production" %}`
 - They will not appear during `bundle exec jekyll serve`
+
+## Ask Before Doing These
+
+Some changes are legitimate but destructive or hard to undo. Explain your plan and get the user's confirmation before:
+
+- **Restructuring or reordering columns** in `_data/<metadata>.csv` (other config CSVs reference these column names)
+- **Bulk-editing many item rows** at once, rather than a targeted change
+- **Changing `display_template`** across the whole collection
+- **Rewriting a config CSV's structure** (vs. adding or removing a single row)
+- **Deleting rows** from any `config-*.csv` — confirm the field isn't referenced elsewhere first
 
 ## Data Files Quick Reference
 
